@@ -67,13 +67,16 @@ int x =0;
     }
 
     public int[] selectFiveGrades(int[] codes, int[] grades) {
+
         String[] subject = new String[codes.length];
         int[] Total = new int[5];
         int first = 0, second = 0, third = 0;
         System.out.println("Codes" + Arrays.toString(codes));
         System.out.println("Grades" + Arrays.toString(grades));
 
-
+for(int k =0; k < Total.length;k++){
+    Total[k]=0;
+}
         for (int i = 0; i < codes.length; i++) {
 
 
@@ -203,20 +206,28 @@ int x =0;
 
             System.out.println("codes" + codes[i] + "subject" + subject[i] + "grades" + grades[i]);
 
-
+            System.out.println(subject[i]);
             if (subject[i] == "Irish") {
-                Total[i] = grades[i];
-                System.out.println(Total[i]);
+                System.out.println("Firts Total "+Total[0]);
+                Total[0] = grades[i];
+                System.out.println("grades"+subject[i]);
+                System.out.println("grades"+ grades[i]);
+                System.out.println("hello");
+
             }
             if (subject[i] == "English") {
-                Total[i] = grades[i];
-                System.out.println(Total[i]);
+                Total[1] = grades[i];
+                System.out.println("grades"+subject[i]);
+                System.out.println("hello");
             }
             if (subject[i] == "Mathematics") {
-                Total[i] = grades[i];
+                Total[2] = grades[i];
+                System.out.println("hello");
+                System.out.println("grades"+subject);
 
-                System.out.println(Arrays.toString(Total));
             }
+
+            System.out.println("Totals"+Total[0]+Total[1]+Total[2]);
             if ((subject[i] == "Mathematics") || (subject[i] == "English") || (subject[i] == "Irish") || (subject[i] == "Civic, Social & Political Education (CSPE)")) {
                 grades[i] = 0;
 
@@ -241,14 +252,8 @@ int x =0;
 
         }
 
-        for(int i=0; i < Total.length;i++) {
-            for (int j = 0; j < Total.length; j++) {
-                if ((Total[i] == 0)&&(Total[j]==0) ){
-                   Total[i]=first;
-                   Total[j]=second;
-                }
-            }
-        }
+ Total[3]=first;
+        Total[4]=second;
 
         System.out.println("first"+first+second);
         System.out.println("before"+Arrays.toString(Total));
@@ -258,8 +263,14 @@ return Total;
 
 
     private double calculateAverage( int[] selectedGrades) {
-        System.out.println(Arrays.toString(selectedGrades));
-       double average = (selectedGrades[0]+selectedGrades[1]+selectedGrades[2]+selectedGrades[3]+selectedGrades[4])/5;
+
+
+        double [] doubles = new double [selectedGrades.length];
+        for(int i =0; i < doubles.length;i++){
+            doubles[i]=selectedGrades[i];
+        }
+        System.out.println(Arrays.toString(doubles));
+       double average = (doubles[0]+doubles[1]+doubles[2]+doubles[3]+doubles[4])/5;
         System.out.println(average+"= average");
        return average;
     }
