@@ -207,7 +207,7 @@ subject[i]= "Irish";
             }
 
             System.out.println("codes"+codes[i]+"subject"+subject[i] +"grades"+grades[i]);
-
+            System.out.println("hi");
 
             if(subject[i]=="Irish"){
                 Total[i] = grades[i];
