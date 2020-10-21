@@ -18,62 +18,66 @@ public class App {
 
         int lines = 0;
         int j = 0;
-        BufferedReader reader = new BufferedReader(new FileReader("JC_Results.txt"));
+
         int count = 0;
         int x = 0;
-        //length the array must be
-        while (reader.readLine() != null) lines++;
-        reader.close();
 
-        System.out.println(lines);
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("JC_Results.txt"));
+            //length the array must be
+            while (reader.readLine() != null) lines++;
+            reader.close();
 
-        String[] Student_Number = new String[lines];
-   double [] finish = new double[lines];
-        int[] Subject_Code = new int[8];
-        int[] Mark = new int[8];
-        String hello = new String();
-        File file = new File("JC_Results.txt");
-        Scanner scan = new Scanner(file);
+            System.out.println(lines);
+
+            String[] Student_Number = new String[lines];
+            double[] finish = new double[lines];
+            int[] Subject_Code = new int[8];
+            int[] Mark = new int[8];
+            String hello = new String();
+            File file = new File("JC_Results.txt");
+            Scanner scan = new Scanner(file);
 
 
-        String[] lineg = new String[lines];
-        for (int i = 0; i < lines; i++) {
-            //single student record
-            lineg[i] = scan.nextLine();
-            hello = lineg[i];
-            Scanner s = new Scanner(lineg[i]);
-            s.useDelimiter(",");
-            Student_Number[i] = s.next();
+            String[] lineg = new String[lines];
+            for (int i = 0; i < lines; i++) {
+                //single student record
+                lineg[i] = scan.nextLine();
+                hello = lineg[i];
+                Scanner s = new Scanner(lineg[i]);
+                s.useDelimiter(",");
+                Student_Number[i] = s.next();
 
-            for (int y = 0; y < hello.length(); y++) {
+                for (int y = 0; y < hello.length(); y++) {
 
-                if (y < 8) {
-                    Subject_Code[y] = s.nextInt();
-                    //  System.out.println("Subject" + Subject_Code[y]);
-                    Mark[y] = s.nextInt();
-                    //   System.out.println("Mark" + Mark[y]);
+                    if (y < 8) {
+                        Subject_Code[y] = s.nextInt();
+                        //  System.out.println("Subject" + Subject_Code[y]);
+                        Mark[y] = s.nextInt();
+                        //   System.out.println("Mark" + Mark[y]);
+
+                    }
+
+
+                }
+                while (lines == x) {
+                    System.out.println(Arrays.toString(Student.selectFiveGrades(Subject_Code, Mark)));
+                    x++;
 
                 }
 
 
-            }
-            while (lines == x) {
-                System.out.println(Arrays.toString(Student.selectFiveGrades(Subject_Code, Mark)));
-                x++;
-
+                finish[i] = Student.calculateAverage(Student.selectFiveGrades(Subject_Code, Mark));
+                System.out.println(finish[i]);
+                s.close();
             }
 
-
-
-
-
-            finish[i]=Student.calculateAverage(Student.selectFiveGrades(Subject_Code, Mark));
-            System.out.println(finish[i]);
+            output(Student_Number, finish);
+scan.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-output(Student_Number,finish);
-
     }
-
     public int[] selectFiveGrades(int[] codes, int[] grades) {
 
         String[] subject = new String[codes.length];
