@@ -212,7 +212,7 @@ scan.close();
             if (codes[i] == 565) {
                 subject[i] = "Jewish Studies";
             }
-            if (codes[i] == 565) {
+            if (codes[i] == 569) {
                 subject[i] = "Visual Arts";
             }
 
