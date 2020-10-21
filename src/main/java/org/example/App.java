@@ -14,13 +14,13 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        App Student = new  App();
+        App Student = new App();
 
         int lines = 0;
         int j = 0;
         BufferedReader reader = new BufferedReader(new FileReader("JC_Results.txt"));
         int count = 0;
-int x =0;
+        int x = 0;
         //length the array must be
         while (reader.readLine() != null) lines++;
         reader.close();
@@ -28,8 +28,9 @@ int x =0;
         System.out.println(lines);
 
         String[] Student_Number = new String[lines];
+   double [] finish = new double[lines];
         int[] Subject_Code = new int[8];
-        int [] Mark = new int[8];
+        int[] Mark = new int[8];
         String hello = new String();
         File file = new File("JC_Results.txt");
         Scanner scan = new Scanner(file);
@@ -48,9 +49,9 @@ int x =0;
 
                 if (y < 8) {
                     Subject_Code[y] = s.nextInt();
-                    System.out.println("Subject" + Subject_Code[y]);
+                    //  System.out.println("Subject" + Subject_Code[y]);
                     Mark[y] = s.nextInt();
-                    System.out.println("Mark" + Mark[y]);
+                    //   System.out.println("Mark" + Mark[y]);
 
                 }
 
@@ -59,10 +60,17 @@ int x =0;
             while (lines == x) {
                 System.out.println(Arrays.toString(Student.selectFiveGrades(Subject_Code, Mark)));
                 x++;
-            }
-            System.out.println(Student.calculateAverage(Student.selectFiveGrades(Subject_Code,Mark)));
-        }
 
+            }
+
+
+
+
+
+            finish[i]=Student.calculateAverage(Student.selectFiveGrades(Subject_Code, Mark));
+            System.out.println(finish[i]);
+        }
+output(Student_Number,finish);
 
     }
 
@@ -71,12 +79,12 @@ int x =0;
         String[] subject = new String[codes.length];
         int[] Total = new int[5];
         int first = 0, second = 0, third = 0;
-        System.out.println("Codes" + Arrays.toString(codes));
-        System.out.println("Grades" + Arrays.toString(grades));
+        //      System.out.println("Codes" + Arrays.toString(codes));
+        //    System.out.println("Grades" + Arrays.toString(grades));
 
-for(int k =0; k < Total.length;k++){
-    Total[k]=0;
-}
+        for (int k = 0; k < Total.length; k++) {
+            Total[k] = 0;
+        }
         for (int i = 0; i < codes.length; i++) {
 
 
@@ -204,30 +212,30 @@ for(int k =0; k < Total.length;k++){
                 subject[i] = "Visual Arts";
             }
 
-            System.out.println("codes" + codes[i] + "subject" + subject[i] + "grades" + grades[i]);
+            System.out.println("codes= " + codes[i] + " subject " + subject[i] + " grades= " + grades[i]);
 
-            System.out.println(subject[i]);
+
             if (subject[i] == "Irish") {
-                System.out.println("Firts Total "+Total[0]);
+                //    System.out.println("Firts Total "+Total[0]);
                 Total[0] = grades[i];
-                System.out.println("grades"+subject[i]);
-                System.out.println("grades"+ grades[i]);
-                System.out.println("hello");
+                //  System.out.println("grades"+subject[i]);
+                //  System.out.println("grades"+ grades[i]);
+                //  System.out.println("hello");
 
             }
             if (subject[i] == "English") {
                 Total[1] = grades[i];
-                System.out.println("grades"+subject[i]);
-                System.out.println("hello");
+                // System.out.println("grades"+subject[i]);
+                //  System.out.println("hello");
             }
             if (subject[i] == "Mathematics") {
                 Total[2] = grades[i];
-                System.out.println("hello");
-                System.out.println("grades"+subject);
+                //     System.out.println("hello");
+                //   System.out.println("grades"+subject);
 
             }
 
-            System.out.println("Totals"+Total[0]+Total[1]+Total[2]);
+            // System.out.println("Totals"+Total[0]+Total[1]+Total[2]);
             if ((subject[i] == "Mathematics") || (subject[i] == "English") || (subject[i] == "Irish") || (subject[i] == "Civic, Social & Political Education (CSPE)")) {
                 grades[i] = 0;
 
@@ -252,32 +260,39 @@ for(int k =0; k < Total.length;k++){
 
         }
 
- Total[3]=first;
-        Total[4]=second;
+        Total[3] = first;
+        Total[4] = second;
 
-        System.out.println("first"+first+second);
-        System.out.println("before"+Arrays.toString(Total));
-return Total;
+        // System.out.println("first"+first+second);
+        // System.out.println("before"+Arrays.toString(Total));
+        return Total;
 
-        }
-
-
-    private double calculateAverage( int[] selectedGrades) {
+    }
 
 
-        double [] doubles = new double [selectedGrades.length];
-        for(int i =0; i < doubles.length;i++){
-            doubles[i]=selectedGrades[i];
+    private double calculateAverage(int[] selectedGrades) {
+
+
+        double[] doubles = new double[selectedGrades.length];
+        for (int i = 0; i < doubles.length; i++) {
+            doubles[i] = selectedGrades[i];
         }
         System.out.println(Arrays.toString(doubles));
-       double average = (doubles[0]+doubles[1]+doubles[2]+doubles[3]+doubles[4])/5;
-        System.out.println(average+"= average");
-       return average;
-    }
+        double average = (doubles[0] + doubles[1] + doubles[2] + doubles[3] + doubles[4]) / 5;
+
+        return average;
 
     }
 
 
+    public static void output(String [] StudentNumber ,double [] average) {
+        System.out.println("Student Number ------------------------------Average");
+        for(int i =0; i < StudentNumber.length;i++){
+            System.out.println(StudentNumber[i] +" \t\t\t\t\t\t\t\t\t\t\t"+average[i]);
+        }
+        System.out.println("----------------------------------------------------");
+    }
+}
 
 /*
             while (scan.hasNext()) {
