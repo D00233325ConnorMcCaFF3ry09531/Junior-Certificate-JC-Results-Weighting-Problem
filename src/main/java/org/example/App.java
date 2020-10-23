@@ -34,7 +34,7 @@ public class App {
             double[] finish = new double[lines];
             int[] Subject_Code = new int[8];
             int[] Mark = new int[8];
-            String hello = new String();
+            String h = new String();
             File file = new File("JC_Results.txt");
             Scanner scan = new Scanner(file);
 
@@ -43,12 +43,12 @@ public class App {
             for (int i = 0; i < lines; i++) {
                 //single student record
                 lineg[i] = scan.nextLine();
-                hello = lineg[i];
+                h = lineg[i];
                 Scanner s = new Scanner(lineg[i]);
                 s.useDelimiter(",");
                 Student_Number[i] = s.next();
 
-                for (int y = 0; y < hello.length(); y++) {
+                for (int y = 0; y < h.length(); y++) {
 
                     if (y < 8) {
                         Subject_Code[y] = s.nextInt();
